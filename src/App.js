@@ -51,16 +51,16 @@ class App extends Component {
     if (this.state.error === false) {
       return (
         <React.Fragment>
-          <Weather results={this.state.results} />
           {this.state.isLoading ? (
             <p className="loading">Loading ...</p>
           ) : (
-            <Form
-              inputValue={this.state.value}
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
-            />
+            <Weather results={this.state.results} />
           )}
+          <Form
+            inputValue={this.state.value}
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+          />
         </React.Fragment>
       );
     } else {
