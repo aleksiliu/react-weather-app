@@ -8,9 +8,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 class App extends Component {
   state = {
     value: '',
-    city: undefined,
-    temperature: undefined,
-    type: undefined,
+    results: {},
     error: false,
     isLoading: false
   };
@@ -31,9 +29,7 @@ class App extends Component {
           data =>
             data.cod === 200
               ? this.setState({
-                  city: data.name,
-                  temperature: data.main.temp,
-                  type: data.weather[0].main,
+                  results: data,
                   error: false,
                   isLoading: false,
                   value: ''
@@ -52,15 +48,10 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.value);
     if (this.state.error === false) {
       return (
         <React.Fragment>
-          <Weather
-            temperature={this.state.temperature}
-            city={this.state.city}
-            type={this.state.type}
-          />
+          <Weather results={this.state.results} />
           {this.state.isLoading ? (
             <p className="loading">Loading ...</p>
           ) : (

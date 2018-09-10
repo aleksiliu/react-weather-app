@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 const Weather = props => {
   return (
     <React.Fragment>
-      {props.city && (
+      {props.results.name && (
         <div className="weather">
-          {props.city && <h1 className="city">{props.city}</h1>}
-          {props.temperature && (
-            <p className="temp">{Math.round(props.temperature)} °C</p>
+          {props.results.name && <h1 className="city">{props.results.name}</h1>}
+          {props.results.main.temp && (
+            <p className="temp">{Math.round(props.results.main.temp)} °C</p>
           )}
-          {props.type && <h3 className="type">{props.type}</h3>}
+          {props.results.weather[0].main && (
+            <h3 className="type">{props.results.weather[0].main}</h3>
+          )}
         </div>
       )}
     </React.Fragment>

@@ -1,6 +1,6 @@
 # React Weather App
 
-Get OpenWeatherMap API to use this app.
+Get OpenWeatherMap API Key to use this app.
 
 ## 1. Create a file called .env
 
