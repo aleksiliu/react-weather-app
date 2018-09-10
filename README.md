@@ -8,9 +8,3 @@ Get OpenWeatherMap API to use this app.
 
 // Example
 REACT_APP_WEATHER_API_KEY=123456
-
-## 3. Remember to add the .env file to your .gitignore file.
-
-## 4. Access the API key via the process.env object inside App.js
-
-const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
