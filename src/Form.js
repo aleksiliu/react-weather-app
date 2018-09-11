@@ -5,32 +5,26 @@ class Form extends Component {
     term: ''
   };
 
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.term);
+  };
+
+  onInputChange = e => {
+    this.setState({ term: e.target.value });
+  };
+
   render() {
     return (
-      <form
-        onSubmit={event => {
-          event.preventDefault();
-          this.state.term.trim() === ''
-            ? false
-            : this.onSubmit(this.state.term);
-        }}
-      >
+      <form onSubmit={this.onSubmit}>
         <input
           type="search"
           value={this.state.term}
           placeholder="Search for a city"
-          onChange={event => this.onInputChange(event.target.value)}
+          onChange={this.onInputChange}
         />
       </form>
     );
-  }
-
-  onSubmit(term) {
-    this.props.onSubmit(term);
-  }
-
-  onInputChange(term) {
-    this.setState({ term });
   }
 }
 

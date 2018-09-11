@@ -44,7 +44,7 @@ class App extends Component {
             ) : (
               <Weather results={this.state.results} />
             )}
-            <Form onSubmit={term => this.onSubmit(term)} />
+            <Form onSubmit={this.onSubmit} />
           </React.Fragment>
         ))
       : (result = (
@@ -54,9 +54,10 @@ class App extends Component {
             ) : (
               <h1 className="error">City not found</h1>
             )}
-            <Form onSubmit={term => this.onSubmit(term)} />
+            <Form onSubmit={this.onSubmit} />
           </React.Fragment>
         ));
+
     return result;
   }
 }
