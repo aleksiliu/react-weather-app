@@ -30,7 +30,10 @@ class App extends Component {
                 isLoading: false,
                 error: true
               })
-      );
+      )
+      .catch(error => {
+        console.log('Error :(', error);
+      });
   };
 
   render() {
