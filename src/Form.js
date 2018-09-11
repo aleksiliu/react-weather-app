@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
 
-const Form = props => {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <input
-        type="search"
-        placeholder="Search for a city"
-        // defaultValue={props.state.value}
-        onChange={props.handleChange}
-      />
-    </form>
-  );
-};
+class Form extends Component {
+  state = {
+    term: ''
+  };
+
+  render() {
+    return (
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          this.state.term.trim() === ''
+            ? false
+            : this.onSubmit(this.state.term);
+        }}
+      >
+        <input
+          type="search"
+          value={this.state.term}
+          placeholder="Search for a city"
+          onChange={event => this.onInputChange(event.target.value)}
+        />
+      </form>
+    );
+  }
+
+  onSubmit(term) {
+    this.props.onSubmit(term);
+  }
+
+  onInputChange(term) {
+    this.setState({ term });
+  }
+}
 
 export default Form;

@@ -7,44 +7,30 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 class App extends Component {
   state = {
-    value: '',
     results: {},
     error: false,
     isLoading: false
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    if (this.state.value.trim() === '') {
-      return false;
-    } else {
-      this.setState({ isLoading: true });
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${
-          this.state.value
-        }&units=metric&APPID=${API_KEY}`
-      )
-        .then(response => response.json())
-        .then(
-          data =>
-            data.cod === 200
-              ? this.setState({
-                  results: data,
-                  error: false,
-                  isLoading: false,
-                  value: ''
-                })
-              : this.setState({
-                  isLoading: false,
-                  error: true,
-                  value: ''
-                })
-        );
-    }
-  };
-
-  handleChange = event => {
-    this.setState({ value: event.target.value });
+  onSubmit = term => {
+    this.setState({ isLoading: true });
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${term}&units=metric&APPID=${API_KEY}`
+    )
+      .then(response => response.json())
+      .then(
+        data =>
+          data.cod === 200
+            ? this.setState({
+                results: data,
+                error: false,
+                isLoading: false
+              })
+            : this.setState({
+                isLoading: false,
+                error: true
+              })
+      );
   };
 
   render() {
@@ -56,11 +42,7 @@ class App extends Component {
           ) : (
             <Weather results={this.state.results} />
           )}
-          <Form
-            inputValue={this.state.value}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-          />
+          <Form onSubmit={term => this.onSubmit(term)} />
         </React.Fragment>
       );
     } else {
@@ -71,11 +53,7 @@ class App extends Component {
           ) : (
             <h1 className="error">City not found</h1>
           )}
-          <Form
-            inputValue={this.state.value}
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-          />
+          <Form onSubmit={term => this.onSubmit(term)} />
         </React.Fragment>
       );
     }
