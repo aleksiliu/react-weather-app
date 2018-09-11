@@ -34,29 +34,30 @@ class App extends Component {
   };
 
   render() {
-    if (this.state.error === false) {
-      return (
-        <React.Fragment>
-          {this.state.isLoading ? (
-            <p className="loading">Loading ...</p>
-          ) : (
-            <Weather results={this.state.results} />
-          )}
-          <Form onSubmit={term => this.onSubmit(term)} />
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment>
-          {this.state.isLoading ? (
-            <p className="loading">Loading ...</p>
-          ) : (
-            <h1 className="error">City not found</h1>
-          )}
-          <Form onSubmit={term => this.onSubmit(term)} />
-        </React.Fragment>
-      );
-    }
+    let result;
+
+    this.state.error === false
+      ? (result = (
+          <React.Fragment>
+            {this.state.isLoading ? (
+              <p className="loading">Loading ...</p>
+            ) : (
+              <Weather results={this.state.results} />
+            )}
+            <Form onSubmit={term => this.onSubmit(term)} />
+          </React.Fragment>
+        ))
+      : (result = (
+          <React.Fragment>
+            {this.state.isLoading ? (
+              <p className="loading">Loading ...</p>
+            ) : (
+              <h1 className="error">City not found</h1>
+            )}
+            <Form onSubmit={term => this.onSubmit(term)} />
+          </React.Fragment>
+        ));
+    return result;
   }
 }
 
