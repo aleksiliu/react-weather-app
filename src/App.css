@@ -40,9 +40,13 @@ input[type='search'] {
 }
 
 .weather,
-.error,
 .loading {
   margin-bottom: 2em;
+  text-align: center;
+}
+
+.error {
+  margin-top: 1em;
   text-align: center;
 }
 
