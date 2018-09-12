@@ -40,12 +40,17 @@ class App extends Component {
     return (
       <React.Fragment>
         {this.state.isLoading ? (
-          <p className="loading">Loading ...</p>
+          <div class="loader"> </div>
         ) : (
-          <Weather results={this.state.results} />
+          <div>
+            {this.state.error ? (
+              <h2 className="error">City not found</h2>
+            ) : (
+              <Weather results={this.state.results} />
+            )}
+            <Form onSubmit={this.onSubmit} />
+          </div>
         )}
-        <Form onSubmit={this.onSubmit} />
-        {this.state.error && <p className="error">City not found</p>}
       </React.Fragment>
     );
   }

@@ -7,6 +7,9 @@ class Form extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    if (this.state.term.trim() === '') {
+      return false;
+    }
     this.props.onSubmit(this.state.term);
     this.setState({ term: '' });
   };
